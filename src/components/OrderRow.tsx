@@ -28,7 +28,6 @@ function statusTimestamp(order: Order): string {
 }
 
 export function OrderRow({ order }: Props) {
-  // Inline formatters — constructed on every render.
   const currency = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
