@@ -1,0 +1,137 @@
+.order-list {
+  background: #111111;
+  border: 1px solid #1f1f1f;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.order-list__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid #1f1f1f;
+}
+
+.order-list__title {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #888;
+  margin: 0;
+}
+
+.order-list__stats {
+  display: flex;
+  gap: 16px;
+  font-size: 13px;
+  color: #aaa;
+}
+
+.order-list__stats strong {
+  color: #e5e5e5;
+}
+
+.order-list__items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.order-list__empty {
+  padding: 24px;
+  text-align: center;
+  color: #777;
+}
+
+.order-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid #1a1a1a;
+  gap: 16px;
+}
+
+.order-row:last-child {
+  border-bottom: none;
+}
+
+.order-row__main {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  flex: 1;
+}
+
+.order-row__top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.order-row__customer {
+  font-weight: 600;
+}
+
+.order-row__sub {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  color: #999;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.order-row__items {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.order-row__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.order-row__total {
+  font-weight: 600;
+}
+
+.order-row__ts {
+  font-size: 12px;
+  color: #777;
+}
+
+.order-row__badge {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  background: transparent;
+}
+
+.order-row__badge--pending {
+  color: #ffb84d;
+}
+.order-row__badge--preparing {
+  color: #00b3ff;
+}
+.order-row__badge--ready {
+  color: #00e5a0;
+}
+.order-row__badge--delivered {
+  color: #888;
+}
+.order-row__badge--cancelled {
+  color: #ef4444;
+}

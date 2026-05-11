@@ -1,0 +1,76 @@
+.filter-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background: #111111;
+  border: 1px solid #1f1f1f;
+  border-radius: 8px;
+}
+
+.filter-bar__row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 12px;
+}
+
+.filter-bar__field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.filter-bar__label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #888;
+}
+
+.filter-bar input[type="text"],
+.filter-bar select {
+  background: #0a0a0a;
+  color: #e5e5e5;
+  border: 1px solid #2a2a2a;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font: inherit;
+  outline: none;
+}
+
+.filter-bar input[type="text"]:focus,
+.filter-bar select:focus {
+  border-color: #00e5a0;
+}
+
+.filter-bar__statuses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.filter-bar__statuses legend {
+  padding: 0;
+  margin-right: 8px;
+}
+
+.filter-bar__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border: 1px solid #2a2a2a;
+  border-radius: 999px;
+  background: #0a0a0a;
+  font-size: 13px;
+  text-transform: capitalize;
+  cursor: pointer;
+  user-select: none;
+}
+
+.filter-bar__chip input {
+  accent-color: #00e5a0;
+}
