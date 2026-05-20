@@ -1,9 +1,8 @@
 import type { Order } from "./types";
-
-const API_BASE = "http://localhost:4000";
+import { API_BASE_URL } from "./config";
 
 export async function fetchInitialOrders(): Promise<Order[]> {
-  const res = await fetch(`${API_BASE}/api/orders`);
+  const res = await fetch(`${API_BASE_URL}/api/orders`);
   if (!res.ok) {
     throw new Error(`Failed to load orders: ${res.status}`);
   }
