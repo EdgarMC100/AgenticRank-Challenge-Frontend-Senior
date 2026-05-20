@@ -1,5 +1,10 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type { Filters, StatusKind } from "../types";
+import {
+  STATUS_OPTIONS,
+  loadFiltersFromStorage,
+  saveFiltersToStorage,
+} from "../utils/filterStorage";
 import "./FilterBar.css";
 
 interface Props {
@@ -7,28 +12,42 @@ interface Props {
   onChange: (filters: Filters) => void;
 }
 
-const STATUS_OPTIONS: StatusKind[] = [
-  "pending",
-  "preparing",
-  "ready",
-  "delivered",
-  "cancelled",
-];
-
 export function FilterBar({ restaurants, onChange }: Props) {
-  const [query, setQuery] = useState("");
-  const [statuses, setStatuses] = useState<StatusKind[]>([]);
-  const [restaurantName, setRestaurantName] = useState<string | null>(null);
+  // Load persisted filters from localStorage on mount
+  const [query, setQuery] = useState(() => {
+    const stored = loadFiltersFromStorage();
+    return stored.query ?? "";
+  });
+  const [debouncedQuery, setDebouncedQuery] = useState("");
+  const [statuses, setStatuses] = useState<StatusKind[]>(() => {
+    const stored = loadFiltersFromStorage();
+    return stored.statuses ?? [];
+  });
+  const [restaurantName, setRestaurantName] = useState<string | null>(() => {
+    const stored = loadFiltersFromStorage();
+    return stored.restaurantName ?? null;
+  });
+
+  // Debounce query updates to reduce filter computations while typing
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedQuery(query), 300);
+    return () => clearTimeout(timer);
+  }, [query]);
+
+  // Persist filters to localStorage whenever they change
+  useEffect(() => {
+    saveFiltersToStorage({ query, statuses, restaurantName });
+  }, [query, statuses, restaurantName]);
 
   useEffect(() => {
-    onChange({ query, statuses, restaurantName });
-  }, [query, statuses, restaurantName, onChange]);
+    onChange({ query: debouncedQuery, statuses, restaurantName });
+  }, [debouncedQuery, statuses, restaurantName, onChange]);
 
-  function toggleStatus(kind: StatusKind) {
+  const toggleStatus = useCallback((kind: StatusKind) => {
     setStatuses((prev) =>
       prev.includes(kind) ? prev.filter((s) => s !== kind) : [...prev, kind],
     );
-  }
+  }, []);
 
   return (
     <section className="filter-bar" aria-label="Filters">

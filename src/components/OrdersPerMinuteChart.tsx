@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import {
   Area,
   AreaChart,
@@ -38,7 +39,7 @@ function bucketByMinute(orders: Order[]): Bucket[] {
 }
 
 export function OrdersPerMinuteChart({ orders }: Props) {
-  const data = bucketByMinute(orders);
+  const data = useMemo(() => bucketByMinute(orders), [orders]);
 
   return (
     <section className="chart">

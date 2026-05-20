@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { fetchInitialOrders } from "./api";
 import { FilterBar } from "./components/FilterBar";
 import { Header } from "./components/Header";
@@ -36,12 +36,17 @@ export function App() {
   }, []);
 
   const { status } = useOrderStream((order: Order) => {
-    setOrders((prev) => [order, ...prev]);
+    setOrders((prev) => {
+      const next = prev.slice();
+      next.unshift(order);
+      return next;
+    });
   });
 
-  const restaurants = Array.from(
-    new Set(orders.map((o) => o.restaurantName)),
-  ).sort();
+  const restaurants = useMemo(
+    () => Array.from(new Set(orders.map((o) => o.restaurantName))).sort(),
+    [orders]
+  );
 
   return (
     <div className="app">
