@@ -10,7 +10,7 @@
 
 .filter-bar__row {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr;
   gap: 12px;
 }
 
@@ -74,4 +74,11 @@
 
 .filter-bar__chip input {
   accent-color: #00e5a0;
+}
+
+/* Tablet and Desktop */
+@media (min-width: 768px) {
+  .filter-bar__row {
+    grid-template-columns: 2fr 1fr;
+  }
 }

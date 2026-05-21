@@ -139,7 +139,13 @@ function seedOrders(count) {
 const SEED = seedOrders(50);
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://main.d220an4ssskwfr.amplifyapp.com'
+  ],
+  credentials: true
+}));
 
 app.get("/api/orders", (_req, res) => {
   res.json(SEED);
