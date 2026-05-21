@@ -62,6 +62,7 @@ export function OrderList({ orders, filters }: Props) {
         >
           {virtualizer.getVirtualItems().map((virtualRow) => {
             const order = filtered[virtualRow.index];
+            if (!order) return null;
             return (
               <div
                 key={order.id}

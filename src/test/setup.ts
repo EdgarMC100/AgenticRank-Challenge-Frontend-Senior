@@ -21,10 +21,19 @@ class LocalStorageMock {
   clear(): void {
     this.store = {};
   }
+
+  get length(): number {
+    return Object.keys(this.store).length;
+  }
+
+  key(index: number): string | null {
+    const keys = Object.keys(this.store);
+    return keys[index] || null;
+  }
 }
 
 // Override localStorage with our mock
-global.localStorage = new LocalStorageMock() as Storage;
+(globalThis as any).localStorage = new LocalStorageMock();
 
 afterEach(() => {
   cleanup();

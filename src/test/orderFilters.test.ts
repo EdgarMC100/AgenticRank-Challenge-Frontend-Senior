@@ -142,9 +142,9 @@ describe("orderFilters", () => {
       const result = filterAndSortOrders(orders, filters);
 
       expect(result).toHaveLength(3);
-      expect(result[0].id).toBe("2"); // 3000 total
-      expect(result[1].id).toBe("3"); // 2000 total
-      expect(result[2].id).toBe("1"); // 1000 total
+      expect(result[0]?.id).toBe("2"); // 3000 total
+      expect(result[1]?.id).toBe("3"); // 2000 total
+      expect(result[2]?.id).toBe("1"); // 1000 total
     });
 
     it("filters out non-matching orders", () => {
@@ -158,7 +158,7 @@ describe("orderFilters", () => {
       const result = filterAndSortOrders(orders, filters);
 
       expect(result).toHaveLength(1);
-      expect(result[0].id).toBe("1");
+      expect(result[0]?.id).toBe("1");
     });
 
     it("returns empty array when no orders match", () => {
